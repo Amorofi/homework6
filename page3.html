@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Include Chart.js library -->
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <h2>Scatter Chart</h2>
 
-  <!-- Create a container for the chart -->
+ 
   <div style="width: 80%; margin: auto;">
     <canvas id="myScatterChart"></canvas>
   </div>
 
   <script>
-    // Sample data (replace with your own numbers and names)
+
     var data = {
       datasets: [{
         label: 'Values',
@@ -25,14 +25,14 @@
           { x: 2, y: 50 },
           { x: 3, y: 20 },
         ],
-        backgroundColor: 'blue', // replace with your color
+        backgroundColor: 'blue', 
       }]
     };
 
-    // Get the context of the canvas element we want to select
+
     var ctx = document.getElementById('myScatterChart').getContext('2d');
 
-    // Create a scatter chart
+ 
     var myScatterChart = new Chart(ctx, {
       type: 'scatter',
       data: data,
