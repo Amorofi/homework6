@@ -18,5 +18,36 @@
 
     <script src="script.js"></script>
     <script src="lineChart.js"></script>
+
+    // lineChart.js
+// Function to display a line chart
+function displayLineChart() {
+    var data = {
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [{
+            label: 'Monthly Data',
+            data: [10, 25, 15, 30, 20],
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            fill: false
+        }]
+    };
+
+    var options = {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
+}
+
 </body>
 </html>
