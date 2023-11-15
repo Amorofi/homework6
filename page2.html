@@ -4,34 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Include Chart.js library -->
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <h2>Bar Chart Data</h2>
 
-  <!-- Create a container for the chart -->
+
   <div style="width: 80%; margin: auto;">
     <canvas id="myBarChart"></canvas>
   </div>
 
   <script>
-    // Sample data (replace with your own numbers and names)
+
     var data = {
-      labels: ['Category 1', 'Category 2', 'Category 3'],
+      labels: ['Book 1', 'Book 2', 'Book 3'],
       datasets: [{
         label: 'Values',
-        data: [30, 50, 20], // replace with your data
-        backgroundColor: ['red', 'blue', 'green'], // replace with your colors
-        borderColor: ['red', 'blue', 'green'], // replace with your colors
+        data: [30, 50, 20], 
+        backgroundColor: ['red', 'blue', 'green'], 
+        borderColor: ['red', 'blue', 'green'],
         borderWidth: 1
       }]
     };
 
-    // Get the context of the canvas element we want to select
+
     var ctx = document.getElementById('myBarChart').getContext('2d');
 
-    // Create a bar chart
+
     var myBarChart = new Chart(ctx, {
       type: 'bar',
       data: data,
