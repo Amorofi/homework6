@@ -8,11 +8,11 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h2>Bubble Chart Data</h2>
+  <h2>Scatter Chart Data</h2>
 
   <!-- Create a container for the chart -->
   <div style="width: 80%; margin: auto;">
-    <canvas id="myBubbleChart"></canvas>
+    <canvas id="myScatterChart"></canvas>
   </div>
 
   <script>
@@ -21,24 +21,27 @@
       datasets: [{
         label: 'Values',
         data: [
-          { x: 'Category 1', y: 30, r: 10 },
-          { x: 'Category 2', y: 50, r: 15 },
-          { x: 'Category 3', y: 20, r: 8 },
+          { x: 1, y: 30 },
+          { x: 2, y: 50 },
+          { x: 3, y: 20 },
         ],
-        backgroundColor: ['red', 'blue', 'green'], // replace with your colors
-        borderColor: ['red', 'blue', 'green'], // replace with your colors
+        backgroundColor: 'blue', // replace with your color
       }]
     };
 
     // Get the context of the canvas element we want to select
-    var ctx = document.getElementById('myBubbleChart').getContext('2d');
+    var ctx = document.getElementById('myScatterChart').getContext('2d');
 
-    // Create a bubble chart
-    var myBubbleChart = new Chart(ctx, {
-      type: 'bubble',
+    // Create a scatter chart
+    var myScatterChart = new Chart(ctx, {
+      type: 'scatter',
       data: data,
       options: {
         scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          },
           y: {
             beginAtZero: true
           }
