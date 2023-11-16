@@ -37,6 +37,22 @@
         .append("div")
         .style("height", d => d + "px")
         .text(d => d);
+
+      const plotlyData = [{
+        x: [1, 2, 3, 4, 5],
+        y: [10, 11, 12, 13, 14],
+        type: 'scatter'
+    }];
+    
+    Plotly.newPlot('plotly-chart-container', plotlyData);
+
+      const plotlyData = [{
+        x: [1, 2, 3, 4, 5],
+        y: [10, 11, 12, 13, 14],
+        type: 'scatter'
+    }];
+    
+    Plotly.newPlot('plotly-chart-container', plotlyData);
 </script>
 
 </body>
