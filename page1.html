@@ -26,34 +26,63 @@
     <!-- Chart.js Example -->
     <canvas id="chartjs-chart"></canvas>
     
-  <script>
-    // D3.js Example
-    const d3Data = [10, 20, 30, 40, 50];
-    
-    d3.select("#d3-chart-container")
-        .selectAll("div")
-        .data(d3Data)
-        .enter()
-        .append("div")
-        .style("height", d => d + "px")
-        .text(d => d);
-
-      const plotlyData = [{
-        x: [1, 2, 3, 4, 5],
-        y: [10, 11, 12, 13, 14],
-        type: 'scatter'
-    }];
-    
-    Plotly.newPlot('plotly-chart-container', plotlyData);
-
-      const plotlyData = [{
-        x: [1, 2, 3, 4, 5],
-        y: [10, 11, 12, 13, 14],
-        type: 'scatter'
-    }];
-    
-    Plotly.newPlot('plotly-chart-container', plotlyData);
-</script>
-
+    <script>
+        // D3.js Example
+        const d3Data = [10, 20, 30, 40, 50];
+        
+        d3.select("#d3-chart-container")
+            .selectAll("div")
+            .data(d3Data)
+            .enter()
+            .append("div")
+            .style("height", d => d + "px")
+            .text(d => d);
+        
+        // Plotly.js Example
+        const plotlyData = [{
+            x: [1, 2, 3, 4, 5],
+            y: [10, 11, 12, 13, 14],
+            type: 'scatter'
+        }];
+        
+        Plotly.newPlot('plotly-chart-container', plotlyData);
+        
+        // Chart.js Example
+        const chartjsData = {
+            labels: ['A', 'B', 'C', 'D', 'E'],
+            datasets: [{
+                label: 'Chart.js Example',
+                data: [12, 19, 3, 5, 2],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+        
+        const chartjsConfig = {
+            type: 'bar',
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('chartjs-chart'), chartjsConfig).data = chartjsData;
+    </script>
 </body>
 </html>
