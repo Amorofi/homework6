@@ -3,30 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery Example</title>
-
-    <!-- jQuery -->
+    <title>Library Demo</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 </head>
 <body>
-
     <div class="container">
-        <h1>jQuery Example</h1>
-
-        <!-- jQuery Example -->
-        <div id="jquery-example">
-            <h2>Changing Text with jQuery</h2>
-            <p id="jquery-result">This text will be changed by jQuery.</p>
-        </div>
+        <h1>Library Demo</h1>
+        <div id="chartContainer"></div>
+        <button id="showAlert">Show Alert</button>
     </div>
 
     <script>
-        // jQuery Example
-        $(document).ready(function() {
-            $("#jquery-result").text("Text changed by jQuery!");
+        $(document).ready(function () {
+            var data = [
+                { number: 12, name: 'Red' },
+                { number: 19, name: 'Blue' },
+                { number: 3, name: 'Yellow' },
+                { number: 5, name: 'Green' },
+                { number: 2, name: 'Purple' },
+                { number: 3, name: 'Orange' }
+            ];
+
+            var labels = data.map(item => item.name);
+            var numbers = data.map(item => item.number);
+
+            var ctx = document.getElementById('chartContainer').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: numbers,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var currentDate = moment().format('MMMM Do YYYY, h:mm:ss a');
+            console.log(currentDate);
+
+            $('#showAlert').on('click', function () {
+                var randomIndex = Math.floor(Math.random() * data.length);
+                var randomData = data[randomIndex];
+
+                Swal.fire({
+                    title: 'Hello!',
+                    html: `You clicked on ${randomData.name}.<br>Number: ${randomData.number}`,
+                    icon: 'success',
+                    confirmButtonText: 'Cool!'
+                });
+            });
         });
     </script>
-
 </body>
 </html>
