@@ -1,48 +1,54 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moment.js Example</title>
 
+    <!-- Moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        #momentjs-example {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h2>Bar Chart</h2>
 
+    <div class="container">
+        <h1>Moment.js Example</h1>
 
-  <div style="width: 80%; margin: auto;">
-    <canvas id="myBarChart"></canvas>
-  </div>
+        <!-- Moment.js Example -->
+        <div id="momentjs-example">
+            <h2>Displaying and Formatting Dates</h2>
+            <p id="current-date"></p>
+            <p id="formatted-date"></p>
+        </div>
+    </div>
 
-  <script>
+    <script>
+        // Moment.js Example
+        var currentDate = moment();
+        var formattedDate = currentDate.format('MMMM Do YYYY, h:mm:ss a');
 
-    var data = {
-      labels: ['Book 1', 'Book 2', 'Book 3'],
-      datasets: [{
-        label: 'Values',
-        data: [30, 50, 20], 
-        backgroundColor: ['red', 'blue', 'green'], 
-        borderColor: ['red', 'blue', 'green'],
-        borderWidth: 1
-      }]
-    };
+        document.getElementById('current-date').textContent = 'Current Date: ' + currentDate.toString();
+        document.getElementById('formatted-date').textContent = 'Formatted Date: ' + formattedDate;
+    </script>
 
-
-    var ctx = document.getElementById('myBarChart').getContext('2d');
-
-
-    var myBarChart = new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  </script>
 </body>
 </html>
