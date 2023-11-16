@@ -3,52 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moment.js Example</title>
+    <title>Library Example</title>
 
-    <!-- Moment.js -->
-    <script src="https://cdn.jsdelivr.net/npm/moment"></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-        h1 {
-            color: #333;
-        }
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
+    <!-- Include Axios library for making HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-        #momentjs-example {
-            margin-top: 20px;
-        }
-    </style>
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Moment.js Example</h1>
+<div class="container mt-5">
+    <h1>Welcome to My Website</h1>
+    
+    <button id="exampleButton" class="btn btn-primary mt-3">Click me!</button>
 
-        <!-- Moment.js Example -->
-        <div id="momentjs-example">
-            <h2>Displaying and Formatting Dates</h2>
-            <p id="current-date"></p>
-            <p id="formatted-date"></p>
-        </div>
-    </div>
+    <canvas id="myChart" width="400" height="400" class="mt-3"></canvas>
 
-    <script>
-        // Moment.js Example
-        var currentDate = moment();
-        var formattedDate = currentDate.format('MMMM Do YYYY, h:mm:ss a');
+    <div id="exampleOutput" class="mt-3"></div>
+</div>
 
-        document.getElementById('current-date').textContent = 'Current Date: ' + currentDate.toString();
-        document.getElementById('formatted-date').textContent = 'Formatted Date: ' + formattedDate;
-    </script>
+<!-- Your custom scripts -->
+<script>
+    // jQuery example
+    $(document).ready(function() {
+        // Handle button click
+        $("#exampleButton").click(function() {
+            // Change the content of the output div using jQuery
+            $("#exampleOutput").html("<p>Button clicked!</p>");
+        });
+    });
+
+    // Chart.js example
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Axios example (making a simple GET request)
+    axios.get('https://jsonplaceholder.typicode.com/posts/1')
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+</script>
 
 </body>
 </html>
