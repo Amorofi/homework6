@@ -5,33 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-  <h2>Pie Chart </h2>
-
-
-  <div style="width: 80%; margin: auto;">
-    <canvas id="myPieChart"></canvas>
-  </div>
+ <div id="jquery-example">
+        <h2>jQuery Example</h2>
+        <p id="jquery-result">This text will be changed by jQuery.</p>
+    </div>
 
   <script>
 
-    var data = {
-      labels: ['Book 1', 'Book 2', 'Book 3'],
-      datasets: [{
-        data: [30, 50, 20], 
-        backgroundColor: ['red', 'blue', 'green'], 
-      }]
-    };
-
-
-    var ctx = document.getElementById('myPieChart').getContext('2d');
-
-    var myPieChart = new Chart(ctx, {
-      type: 'pie',
-      data: data,
-    });
+    $(document).ready(function() {
+            $("#jquery-result").text("Text changed by jQuery!");
+        });;
   </script>
 </body>
 </html>
