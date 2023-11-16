@@ -1,73 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Demo</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   
-</head>
-<body>
-    <div class="container">
-        <h1>Library Demo</h1>
-        <div id="chartContainer"></div>
-        <button id="showAlert">Show Alert</button>
-    </div>
+<div id="container"></div>
+<script type="module">
 
-    <script>
-        $(document).ready(function () {
-            var data = [
-                { number: 12, name: 'Red' },
-                { number: 19, name: 'Blue' },
-                { number: 3, name: 'Yellow' },
-                { number: 5, name: 'Green' },
-                { number: 2, name: 'Purple' },
-                { number: 3, name: 'Orange' }
-            ];
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-            var labels = data.map(item => item.name);
-            var numbers = data.map(item => item.number);
+// Declare the chart dimensions and margins.
+const width = 640;
+const height = 400;
+const marginTop = 20;
+const marginRight = 20;
+const marginBottom = 30;
+const marginLeft = 40;
 
-            var ctx = document.getElementById('chartContainer').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: '# of Votes',
-                        data: numbers,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+// Declare the x (horizontal position) scale.
+const x = d3.scaleUtc()
+    .domain([new Date("2023-01-01"), new Date("2024-01-01")])
+    .range([marginLeft, width - marginRight]);
 
-            var currentDate = moment().format('MMMM Do YYYY, h:mm:ss a');
-            console.log(currentDate);
+// Declare the y (vertical position) scale.
+const y = d3.scaleLinear()
+    .domain([0, 100])
+    .range([height - marginBottom, marginTop]);
 
-            $('#showAlert').on('click', function () {
-                var randomIndex = Math.floor(Math.random() * data.length);
-                var randomData = data[randomIndex];
+// Create the SVG container.
+const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-                Swal.fire({
-                    title: 'Hello!',
-                    html: `You clicked on ${randomData.name}.<br>Number: ${randomData.number}`,
-                    icon: 'success',
-                    confirmButtonText: 'Cool!'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+// Add the x-axis.
+svg.append("g")
+    .attr("transform", `translate(0,${height - marginBottom})`)
+    .call(d3.axisBottom(x));
+
+// Add the y-axis.
+svg.append("g")
+    .attr("transform", `translate(${marginLeft},0)`)
+    .call(d3.axisLeft(y));
+
+// Append the SVG element.
+container.append(svg.node());
+
+</script>
