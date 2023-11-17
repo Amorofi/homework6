@@ -15,18 +15,39 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
  <!-- Include React and ReactDOM -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://threejs.org/build/three.js"></script>
     
 </head>
 <body>
     <h1>Charts Examples with D3, Plotly, and Chart.js</h1>
 
-            <div id="root"></div>
-    <script>
-        // Your React code here
-        const element = React.createElement('h1', null, 'Hello, React!');
-        ReactDOM.render(element, document.getElementById('root'));
+            <script>
+        // Your Three.js code here
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
     </script>
 
    <div class="container">
