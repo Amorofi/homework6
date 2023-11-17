@@ -13,21 +13,20 @@
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- D3.js -->
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+ <!-- Include React and ReactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    
 </head>
 <body>
     <h1>Charts Examples with D3, Plotly, and Chart.js</h1>
 
-        <svg width="400" height="200"></svg>
+            <div id="root"></div>
     <script>
-        // Your D3.js code here
-        const svg = d3.select('svg');
-        svg.append('text')
-            .attr('x', 100)
-            .attr('y', 100)
-            .text('Hello, D3.js!')
-            .style('fill', 'green');
+        // Your React code here
+        const element = React.createElement('h1', null, 'Hello, React!');
+        ReactDOM.render(element, document.getElementById('root'));
     </script>
 
    <div class="container">
