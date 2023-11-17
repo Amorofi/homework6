@@ -6,26 +6,19 @@
     <title>Homework 6 </title>
     
      <script src="https://threejs.org/build/three.js"></script>
-     <!-- Moment.js -->
+
     <script src="https://cdn.jsdelivr.net/npm/moment"></script>
 
-    <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
- 
-   
     
 </head>
 <body>
+    
     <h1>This is my page using 4 different libraries</h1>
 
      <h2>Three.js</h2>
-    <div>
-      <canvas id="js"></canvas>
-    </div>
         <script>
          
         const scene = new THREE.Scene();
@@ -56,9 +49,8 @@
     </script>
 
    <div class="container">
-        <h1>Moment.js Example</h1>
-
-        <!-- Moment.js Example -->
+        <h1>Moment.js</h1>
+       
         <div id="momentjs-example">
             <h2>Displaying and Formatting Dates</h2>
             <p id="current-date"></p>
@@ -68,15 +60,13 @@
 
     <script>
 
-        // Moment.js Example
+        
         var currentDate = moment();
         var formattedDate = currentDate.format('MMMM Do YYYY, h:mm:ss a');
 
         document.getElementById('current-date').textContent = 'Current Date: ' + currentDate.toString();
         document.getElementById('formatted-date').textContent = 'Formatted Date: ' + formattedDate;
     </script>
-    
-    <!-- Plotly.js Example -->
 
     
     <h2>Plotly.js Example</h2>
@@ -91,7 +81,6 @@
         Plotly.newPlot('plotly-chart-container', plotlyData);
 </script>
 
-    <!-- Chart.js Example -->
     <h2>Chart.js Example</h2>
     <div>
       <canvas id="myChart"></canvas>
