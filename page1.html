@@ -3,33 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Charts</title>
-    
+    <title>Charts Examples</title>
+
     <!-- D3.js -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    
+
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Interactive Charts with D3, Plotly, and Chart.js</h1>
-    
+    <h1>Charts Examples with D3, Plotly, and Chart.js</h1>
+
     <!-- D3.js Example -->
+    <h2>D3.js Example</h2>
     <div id="d3-chart-container"></div>
-    
-    <!-- Plotly.js Example -->
-    <div id="plotly-chart-container"></div>
-    
-    <!-- Chart.js Example -->
-    <canvas id="chartjs-chart"></canvas>
-    
     <script>
-        // D3.js Example
         const d3Data = [10, 20, 30, 40, 50];
-        
+
         d3.select("#d3-chart-container")
             .selectAll("div")
             .data(d3Data)
@@ -37,17 +30,25 @@
             .append("div")
             .style("height", d => d + "px")
             .text(d => d);
-        
-        // Plotly.js Example
+    </script>
+
+    <!-- Plotly.js Example -->
+    <h2>Plotly.js Example</h2>
+    <div id="plotly-chart-container"></div>
+    <script>
         const plotlyData = [{
             x: [1, 2, 3, 4, 5],
             y: [10, 11, 12, 13, 14],
             type: 'scatter'
         }];
-        
+
         Plotly.newPlot('plotly-chart-container', plotlyData);
-        
-        // Chart.js Example
+    </script>
+
+    <!-- Chart.js Example -->
+    <h2>Chart.js Example</h2>
+    <canvas id="chartjs-chart"></canvas>
+    <script>
         const chartjsData = {
             labels: ['A', 'B', 'C', 'D', 'E'],
             datasets: [{
@@ -70,7 +71,7 @@
                 borderWidth: 1
             }]
         };
-        
+
         const chartjsConfig = {
             type: 'bar',
             options: {
@@ -81,7 +82,7 @@
                 }
             }
         };
-        
+
         new Chart(document.getElementById('chartjs-chart'), chartjsConfig).data = chartjsData;
     </script>
 </body>
