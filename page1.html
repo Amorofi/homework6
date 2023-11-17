@@ -13,9 +13,22 @@
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 <body>
     <h1>Charts Examples with D3, Plotly, and Chart.js</h1>
+
+        <svg width="400" height="200"></svg>
+    <script>
+        // Your D3.js code here
+        const svg = d3.select('svg');
+        svg.append('text')
+            .attr('x', 100)
+            .attr('y', 100)
+            .text('Hello, D3.js!')
+            .style('fill', 'green');
+    </script>
 
    <div class="container">
         <h1>Moment.js Example</h1>
