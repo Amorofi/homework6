@@ -3,111 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 6 </title>
-    
-     <script src="https://threejs.org/build/three.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-    <script src="https://cdn.jsdelivr.net/npm/moment"></script>
+        header {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
 
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+        .featured-properties {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .property-card {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .property-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .amenities-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+      
+        .amenities-section li {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .amenities-section li.aos-animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
-    
-    <h1>This is my page using 4 different libraries</h1>
 
-    <div class="container">
-        <h1>Moment.js</h1>
-       
-        <div id="momentjs-example">
-            <h2>Date</h2>
-            <p id="current-date"></p>
-            <p id="formatted-date"></p>
+<header>
+    <h1>Your Real Estate Website</h1>
+</header>
+
+<main>
+    <section class="featured-properties">
+        <h2>Featured Properties</h2>
+
+        <div class="property-card">
+            <img src="https://parrotrealty.com/files/property_image/3093/470_3093.jpeg" alt="Property 1">
+            <h3>Beautiful Family Home</h3>
+            <p>3 Bed | 2 Bath | 2,000 sqft</p>
+            <a href="#" onclick="showDetails('property1-details')">View Details</a>
+            <div id="property1-details" class="property-details">
+                <img src="https://fpg.roomsketcher.com/image/topic/3/image/3-Bedroom-3D-House-Plan.jpg" alt="Property 1">
+              
+                <div id="threejs-container"></div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <script>     
-        var currentDate = moment();
-        var formattedDate = currentDate.format('MMMM Do YYYY, h:mm:ss a');
+    <section class="amenities-section">
+        <h2 class="mb-4">Amenities</h2>
+        <p class="lead">Explore the amazing amenities we offer to make your dream home even more special:</p>
+        <ul>
+            <li data-aos="fade-up" class="aos-animate">Spacious living areas</li>
+            <li data-aos="fade-up" data-aos-delay="100" class="aos-animate">Modern kitchen designs</li>
+            <li data-aos="fade-up" data-aos-delay="200" class="aos-animate">Luxurious bathrooms</li>
+            <li data-aos="fade-up" data-aos-delay="300" class="aos-animate">Beautiful outdoor spaces</li>
+        </ul>
+    </section>
+</main>
 
-        document.getElementById('current-date').textContent = 'Current Date: ' + currentDate.toString();
-        document.getElementById('formatted-date').textContent = 'Formatted Date: ' + formattedDate;
-    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
     
-     <h2>Three.js</h2>
-        <script>
-         
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+    AOS.init({
+        duration: 1000, 
+    });
 
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
+    function showDetails(detailsId) {
+        var detailsElement = document.getElementById(detailsId);
+        if (detailsElement.style.display === 'none') {
+            detailsElement.style.display = 'block';
+          
+            initThreeJs();
+        } else {
+            detailsElement.style.display = 'none';
+        }
+    }
+
+    function initThreeJs() {
+        
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(300, 300); // Adjust the size as needed
+        document.getElementById('threejs-container').appendChild(renderer.domElement);
+
+        var geometry = new THREE.BoxGeometry();
+        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        var cube = new THREE.Mesh(geometry, material);
 
         scene.add(cube);
 
         camera.position.z = 5;
 
-        const animate = function () {
+        var animate = function () {
             requestAnimationFrame(animate);
 
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
+            
 
             renderer.render(scene, camera);
         };
 
         animate();
-    </script>
-
-    
-    <h2>Plotly.js</h2>
-    <div id="plotly-chart-container"></div>
-    <script>
-        const plotlyData = [{
-            x: [1, 2, 3, 4, 5],
-            y: [10, 11, 12, 13, 14],
-            type: 'scatter'
-        }];
-
-        Plotly.newPlot('plotly-chart-container', plotlyData);
-</script>
-
-    <h2>Chart.js</h2>
-    <div>
-      <canvas id="myChart"></canvas>
-    </div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  const ctx = document.getElementById('myChart');
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
     }
-  });
 </script>
-    </script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 </html>
